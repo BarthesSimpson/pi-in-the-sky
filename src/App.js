@@ -13,10 +13,12 @@ class App extends Component {
     super()
     this.state = { data: initializeData() }
   }
+
   static settings = {
     delay: 16, // ms between updates
     limit: 10000 // nth digit of pi at which to stop
   }
+
   componentDidMount() {
     const { delay, limit } = this.settings
     let i = 0
@@ -31,11 +33,15 @@ class App extends Component {
       i++
     }
   }
+
   genPi = i => parseInt(pi.charAt(i), 10)
+
   genPiDiff = i => parseInt(pi.charAt(i + 1), 10) - parseInt(pi.charAt(i), 10)
+
   updatePiConsec = i => {
     if (!this.genPiDiff(i)) this.updateHistogram(this.genPi(i))
   }
+
   update = n => {
     const { data } = this.state
     console.log(data.filter(({ name }) => name === n))
@@ -45,6 +51,7 @@ class App extends Component {
     )
     this.setState({ data: updated })
   }
+
   updateHistogram = n => {
     const { data } = this.state
     const updated = data
@@ -55,6 +62,7 @@ class App extends Component {
       .sort((a, b) => a.tally - b.tally)
     this.setState({ data: updated })
   }
+
   render() {
     const { data } = this.state
     return (
