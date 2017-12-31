@@ -8,19 +8,19 @@ const initializeData = () =>
     .fill()
     .map((_, i) => ({ name: i, tally: 0 }))
 
+const settings = {
+  delay: 16, // ms between updates
+  limit: 10000 // nth digit of pi at which to stop
+}
+
 class App extends Component {
   constructor() {
     super()
     this.state = { data: initializeData() }
   }
 
-  static settings = {
-    delay: 16, // ms between updates
-    limit: 10000 // nth digit of pi at which to stop
-  }
-
   componentDidMount() {
-    const { delay, limit } = this.settings
+    const { delay, limit } = settings
     let i = 0
     const f = i => () => {
       const d = this.genPi(i)
